@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Join</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body{
+      background-color: #000;
+      color: #bfc0d1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      min-height:100vh;
+    }
+
+    /* ---------- Header with curve ---------- */
+    .header{
+      width:100%;
+      height:120px;
+      background: #31323e;
+      border-bottom-left-radius: 120px 40px;
+      border-bottom-right-radius: 0px 40px;
+      display:flex;
+      justify-content:center;
+      align-items: center;
+      position:relative;
+      padding-bottom: 0px;
+    }
+
+    .back-button{
+      position:absolute;
+      top: -1px;
+      left:5px;
+      font-size: 24px;
+      color: #000000;
+      cursor:pointer;
+    }
+
+    .title{
+      font-size: 3rem;
+      font-weight: 700;
+      color: #60519b;
+      text-align:center;
+      margin-top:0px;
+    }
+
+    /* ---------- container ---------- */
+    .container{
+      width:100%;
+      max-width:500px;
+      padding:20px;
+      text-align:center;
+      margin-top:-60px;
+      margin-bottom: 1px;
+    }
+
+    .image{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: relative;
+      margin-bottom:20px;
+      margin-top:40px;
+    }
+    .image img{max-width:100%;height:auto;display:block;}
+
+    /* ---------- Buttons ---------- */
+    .button {
+      background-color: #60519b;
+      color: black;
+      border-radius:10px;
+      margin:12px auto;
+      height:55px;
+      width:80%;
+      max-width:350px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .button a{
+      color:#bfc0d1;
+      text-decoration: none;
+      font-size:1.1rem;
+      font-weight:500;
+      display:block;
+      width:100%;
+      text-align:center;
+    }
+    .button:hover {
+      background-color: #7869b6;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:600px){
+      .header {
+        padding-top: 20px;
+        height: 90px;
+        justify-content: center;
+        align-items: center;
+        border-bottom-left-radius: 60px 20px;
+        border-bottom-right-radius: 0px 20px;
+    }
+          .title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-top: -20px;
+          }
+    .container{
+        padding: 10px;
+        margin-top: 10px;
+      }
+    .image {
+        margin-top: -20px;
+        margin-bottom: 10px;
+    }
+    .button {
+        width: 80%;
+        max-width: 350px;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+
+    <div class="back-button"><i class="fas fa-undo"></i></div>
+    <h1 class="title">Let’s Join</h1>
+  </div>
+
+  <div class="container">
+    <div class="image">
+      <img src="https://i.postimg.cc/QtzttkdJ/IMG-6992-1.jpg" alt="Join Illustration">
+    </div>
+
+    <!-- Buttons styled like input-box -->
+    <div class="button">
+      <a href="#">Create a room</a>
+    </div>
+    <div class="button">
+      <a href="#">Join a room</a>
+    </div>
+  </div>
+
+</body>
+</html>

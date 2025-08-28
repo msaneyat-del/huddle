@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Room Creating - Responsive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #bfc0d1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .header {
+      width: 100%;
+      height: 120px;
+      background-color: #31323e;
+      border-bottom-left-radius: 120px 40px;
+      border-bottom-right-radius: 0px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      font-size: 24px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #60519b;
+      margin: 0;
+      text-align: center;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .content-container {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+
+    .image {
+      width: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .image img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #31323e;
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .field-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: nowrap;
+    }
+
+    .field-label { font-weight: 600; white-space: nowrap; }
+
+    .input-box {
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      background-color: #1e202c;
+      border-radius: 10px;
+      padding: 0 15px;
+      height: 55px;
+      width: 100%;
+    }
+
+    .input-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      padding: 15px 0;
+      color: #60519b;
+      font-size: 16px;
+    }
+
+    .input-box input::placeholder { 
+      color: #bfc0d1; 
+    }
+
+    .input-box input:focus {
+      box-shadow: 0 0 0 2px #60519b;
+    }
+
+    .input { 
+      background: transparent; 
+      border: none; 
+      width: 100%; 
+      height: 44px; 
+      padding: 0; 
+      color: #60519b; 
+      font-size: 15px; }
+
+    .select {
+      background: #1e202c;
+      border-radius: 10px;
+      height: 44px;
+      border: none;
+      padding: 0 10px;
+      color: #60519b;
+      font-size: 15px;
+      width: 100%;
+      outline: none;
+      transition: box-shadow 0.3 ease;
+    }
+    .select:focus {
+      box-shadow: 0 0 0 0; 
+    }
+    .select::-ms-expand { 
+        display: none; 
+    }
+    .select option { 
+        background: #1e202c; 
+        color: #60519b; 
+    }
+
+    .pin-row { 
+        display: flex; 
+        gap: 10px; 
+        flex-wrap: nowrap; 
+        justify-content: space-between;
+    }
+    .pin-input {
+      flex-grow: 1;
+      flex-basis: 60px; 
+      flex-shrink: 1;
+      min-width: 0; 
+      max-width: none; 
+      height: 56px;
+      border-radius: 8px; 
+      background: #1e202c;
+      display: flex; 
+      border-radius: 8px;
+      border: none;
+      align-items: center; 
+      justify-content: center;
+      font-size: 22px; 
+      color: #60519b;
+      text-align: center; 
+      outline: none;
+    }
+
+    .error-message {
+      color: #60519b;
+      font-size: 14px;
+      margin-top: 10px;
+      visibility: hidden;
+    }
+    .submit-container { 
+        display: flex; 
+        justify-content: center; 
+        margin-top: 15px; 
+        margin-bottom: 30px;
+    }
+    .submit-btn {
+      background-color: #60519b;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      width: 200px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover { 
+        background-color: #7869b6; 
+    }
+    .submit-btn i { 
+        font-size: 24px; 
+        color: black; 
+        margin-left: 10px; 
+    }
+
+
+    .keyboard {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #31323e;
+      padding: 10px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform 0.3s ease-in-out;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .keyboard.show { 
+      display: grid; 
+      transform: translateY(0); 
+    }
+    .key {
+      background: #1e202c; 
+      padding: 10px; 
+      font-size: 18px; 
+      border-radius: 8px;
+      text-align: center; 
+      cursor: pointer; 
+      user-select: none; 
+      color: #bfc0d1;
+      transition: background-color 0.1s;
+    }
+    .key:active { 
+        background: #bfc0d1; 
+    }
+    .key.key-backspace, .key.key-submit { 
+        color: #bfc0d1; 
+    }
+
+
+@media screen and (max-width: 600px) {
+  .header {
+    height: 90px;
+    border-bottom-left-radius: 60px 20px;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .back-button {
+    top: 5px;
+    left: 5px;
+  }
+  .content-container {
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .image {
+    margin-top: -20px;
+    margin-bottom: 0px;
+  }
+  .form-container {
+    padding: 15px;
+    gap: 15px;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .field-label {
+    font-size: 1rem;
+  }
+ .input-box, .select {
+    height: 45px;
+  }
+  .pin-input {
+    flex: 1; 
+    flex-basis: 50px;
+    min-width: 0px; 
+    max-width: none;
+    height: 48px; 
+    font-size: 18px; 
+  }
+  .submit-btn { 
+    width: 180px; 
+    padding: 10px;
+    font-size: 1rem; 
+  }
+  .form-container {
+    padding: 15px; 
+    gap: 15px;
+    width: 90%; 
+    max-width: 350px; 
+    margin: 0 auto; 
+  }
+  .pin-row {
+    width: 100%; 
+  }
+  .pin-input {
+    flex-basis: 50px;
+    height: 48px; 
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding-top: -20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .submit-btn { 
+    width: 250px; 
+    padding: 20px; 
+  }
+  .header {
+    height: 120px;
+    border-bottom-left-radius: 120px 40px;
+    border-bottom-right-radius: 0px 40px;
+    margin-bottom: 20px;
+  }
+  .content-container {
+    padding-top: 0px;
+  }
+  .title {
+    font-size: 3.5rem;
+  }
+  .image img {
+    margin-top: -80px;
+  }
+  .back-button{
+    top: 5px;
+    left: 5px;     
+  }   
+
+}
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <i class="fas fa-undo back-button"></i>
+    <h1 class="title">Room Creating</h1>
+  </div>
+
+  <div class="content-container">
+    <div class="image">
+      <img src="https://i.postimg.cc/JhpGkkJZ/IMG-6993-1.jpg" alt="Room Image">
+    </div>
+
+    <div class="form-container">
+      <div class="field-group">
+        <div class="field-label">Your room code</div>
+        <div class="input-box">
+          <input type="text" class="input" id="room-code" readonly>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Set a limit</div>
+        <div class="input-box">
+          <select class="select" id="room-limit">
+            <option value="2">2 people</option>
+            <option value="3">3 people</option>
+            <option value="4">4 people</option>
+            <option value="5">5 people</option>
+            <option value="6">6 people</option>
+            <option value="7">7 people</option>
+            <option value="8">8 people</option>
+            <option value="9">9 people</option>
+            <option value="10" selected>10 people</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Set a PIN</div>
+        <div class="pin-row">
+          <input type="text" class="pin-input" maxlength="1">
+          <input type="text" class="pin-input" maxlength="1">
+          <input type="text" class="pin-input" maxlength="1">
+          <input type="text" class="pin-input" maxlength="1">
+          <input type="text" class="pin-input" maxlength="1">
+        </div>
+        <span class="error-message"></span>
+      </div>
+    </div>
+
+    <div class="submit-container">
+      <button type="submit" class="submit-btn">Create <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <div class="keyboard" id="keyboard">
+    <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+    <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+    <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+    <div class="key key-backspace">←</div><div class="key">0</div><div class="key key-submit">✔</div>
+  </div>
+
+  <script>
+    function generateRoomCode() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < 6; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      document.getElementById('room-code').value = result;
+    }
+    window.onload = generateRoomCode;
+    const pinInputs = document.querySelectorAll('.pin-input');
+    const keyboard = document.getElementById('keyboard');
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const errorMessage = document.querySelector('.error-message');
+
+    function setActive(index) {
+      pinInputs.forEach(input => input.classList.remove('active'));
+      if (index < pinInputs.length) {
+        pinInputs[index].classList.add('active');
+        if (isMobile) pinInputs[index].scrollIntoView({behavior:'smooth', block:'center'});
+      }
+    }
+
+    const pinRow = document.querySelector('.pin-row');
+
+    if (!isMobile) {
+      pinRow.addEventListener('input', (e) => {
+        const input = e.target;
+        const value = input.value;
+        const index = Array.from(pinInputs).indexOf(input);
+        if (value.length === 1) {
+            if (isNaN(value)) {
+                errorMessage.textContent = 'Only numbers are allowed.';
+                errorMessage.style.visibility = 'visible';
+                input.value = ''; 
+            } else {
+                errorMessage.style.visibility = 'hidden';
+                if (index < pinInputs.length - 1) {
+                    pinInputs[index + 1].focus(); 
+                }
+            }
+        }
+      });
+      pinRow.addEventListener('keydown', (e) => {
+        const input = e.target;
+        const index = Array.from(pinInputs).indexOf(input);
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          pinInputs[index - 1].focus();
+        }
+      });
+    }
+
+    pinInputs.forEach((input, index) => {
+      if (isMobile) {
+        input.setAttribute('readonly', 'readonly');
+        input.addEventListener('click', () => {
+          currentIndex = index;
+          setActive(currentIndex);
+          keyboard.classList.add('show');
+        });
+      } else {
+        input.removeAttribute('readonly');
+        input.addEventListener('input', e => {
+          if(e.target.value.length === 1 && index < pinInputs.length - 1) pinInputs[index+1].focus();
+          else if(e.target.value.length === 0 && index > 0) pinInputs[index-1].focus();
+        });
+      }
+    });
+
+    if (isMobile) {
+      document.querySelectorAll('.key').forEach(key => {
+        key.addEventListener('click', () => {
+          const activeInput = document.querySelector('.pin-input.active');
+          if(!activeInput) return;
+          const keyValue = key.textContent;
+
+          if(keyValue==="←") {
+            if(activeInput.value==='') { 
+              const prevIndex = Math.max(currentIndex-1,0); 
+              pinInputs[prevIndex].value=''; 
+              currentIndex=prevIndex; 
+              setActive(currentIndex);
+            } else {
+              activeInput.value='';
+            }
+          } else if(keyValue==="✔") {
+            if(Array.from(pinInputs).every(input=>input.value.length===1)) keyboard.classList.remove('show');
+          } else {
+            activeInput.value=keyValue;
+            if(currentIndex < pinInputs.length-1) { 
+              currentIndex++; 
+              setActive(currentIndex); 
+            }
+            else {
+              keyboard.classList.remove('show');
+            }
+          }
+        });
+      });
+
+      document.addEventListener('click', e => {
+        if(!keyboard.contains(e.target) && !Array.from(pinInputs).some(input=>input.contains(e.target))) {
+          keyboard.classList.remove('show');
+          pinInputs.forEach(input=>input.classList.remove('active'));
+        }
+      });
+    }
+
+    setActive(0);
+  </script>
+
+</body>
+</html>
